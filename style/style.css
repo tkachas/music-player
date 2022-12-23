@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400&display=swap');
 
 * {
     margin: 0;
@@ -13,17 +13,21 @@ body {
     align-items: center;
     justify-content: center;
 }
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
 @media screen and (min-width: 1000px) {
     .head {
-        height: 100px;
+        height: 50px;
         width: 70%;
         min-width: 30%;
         background-color: #fff;
         margin-left: 50px;
         margin-right: 50px;
         display: grid;
-        grid-template-columns: 3fr repeat(3, 1fr);
+        grid-template-columns: 2fr repeat(4, 1fr);
         box-shadow: 0px 0.3px 5px rgb(187, 186, 186);
     }
     .button {
@@ -33,14 +37,20 @@ body {
         color: black;
     }
     .button:active {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
     .section {
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 2rem;
+        height: 100%;
+    }
+    #name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.8rem;
         height: 100%;
     }
     #name {
@@ -48,16 +58,148 @@ body {
         padding-left: 100px;
     }
     #main-page, #playlists, #songs{
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         color:rgb(71, 70, 70);
+    }
+    @media screen and (min-width: 2200px) {
+        .head {
+            height: 100px;
+        }
+        #name {
+            font-size: 3rem;
+        }
+        #main-page, #playlists, #songs{
+            font-size: 2rem;
+        }
     }
     .content {
         width: 70%;
         min-width: 30%;
-        height: 50vh;
         background-color: #fff;
         position: relative;
         top: 5px;
         box-shadow: 0px 0.3px 5px rgb(187, 186, 186);
     }
+    .mus-anim {
+        width: 100%;
+        /* box-shadow: inset 0px 0 1px 2px gray; */
+        /* background: linear-gradient(320deg, #2ecc71 15%, #2980b9 85%) fixed; */
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #a4466a);
+	    background-size: 400% 400%;
+	    animation: gradient 12s ease infinite;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    #play-random {
+
+        font-size: 5rem;
+        color: white;
+        /* padding-bottom: 2rem; */
+        text-shadow: 2px 1px 2px gray;
+        cursor: pointer;
+    }
+
+    @media screen and (min-width: 2800px) {
+        #play-random {
+            font-size: 8rem;
+        }
+    }
+    #play-random:active {
+        color: rgb(213, 213, 213);
+    }
+
+    .playing-now {
+        height: 50px;
+        position: fixed;
+        bottom: 0;
+        background-color: rgb(255, 253, 253);
+        box-shadow: 0px 0px 6px rgb(81, 81, 81);
+        display: flex;
+        align-items: center;
+
+    }
+    .player-buttons-div {
+        text-align: center;
+        width: 200px;
+    }
+    #player-buttons {
+        /* color: #dad8d6; */
+        color: #b0afad;
+        cursor: pointer;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .play-current {
+        font-size: 25px;
+    }
+    .pause {
+        font-size: 25px;
+        display: none;
+    }
+    .play-previous {
+        font-size: 20px;
+    }
+    .play-next {
+        font-size: 20px;
+        /* text-shadow: 0px 0px 2px rgb(67, 67, 67); */
+    }
+
+    .current-song {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.9em;
+        min-width: 100px;
+        padding-left: 5px;
+    }
+    .current-song-img {
+        width: 40px;
+        height: 40px;
+        background-image: url('../img/morgenshtern-cadillac.jpeg');
+        background-size: cover;  
+    }
+    p#current-song-name {
+        font-weight: 300;
+    }
+    .actions-with-current-song {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        color: #b0afad;
+    }
+    .volume-bar {
+        right: 10px;
+        position: absolute;
+        display: flex;
+        align-items: center;
+    }
+    .volume-control {
+        width: 150px;
+        height: 0;
+        border-radius: 3px;
+        border: 2px solid #b0afad;
+        display: flex;
+        align-items: center;
+    }
+    .volume-control-button {
+        background-color: #b0afad;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        cursor: pointer;
+    }
+
 }

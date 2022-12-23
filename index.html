@@ -4,21 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/musAnim.css">
     <title>MyMusic</title>
 </head>
 <body>
     <div class="head">
-        <div class="section" id="name">
-            <p>Music</p>
+        <div id="name">
+            <p><a href="index.html">Music</a></p>
         </div>
-        <div class="section" id="main-page"><p class="button">Main</p></div>
+        <div class="section" id="main-page"><p class="button">Main</i></p></div>
         <div class="section" id="playlists"><p class="button">Playlists</p></div>
         <div class="section" id="songs"><p class="button">Songs</p></div>
     </div>
     <div class="content">
 
         <div class="main-page-content">
+
+            <div class="mus-anim">
+                    <i id="play-random" class="fa fa-play" aria-hidden="true"></i>
+                    <p id="play-random" style="margin-left:20px;">Play random</p>
+            </div>
 
         </div>
 
@@ -30,10 +39,42 @@
 
         </div>
 
+        <div class="playing-now">
+            <div class="player-buttons-div">
+                <i id="player-buttons" class="fa fa-fast-backward play-previous"></i>
+                <i id="player-buttons" class="fa fa-play play-current" aria-hidden="true"></i>
+                <i id="player-buttons" class="fa fa-pause pause"></i>
+                <i id="player-buttons" class="fa fa-fast-forward play-next"></i>
+            </div>
+            <div class="current-song-img">
+                    
+            </div>
+            <div class="current-song">
+                <p id="current-song-artist">
+                    Morgenshtern
+                </p>
+                <p id="current-song-name">
+                    Cadillac
+                </p>
+            </div>
+            <div class="actions-with-current-song">
+                <i id="player-buttons" class="fa fa-plus" aria-hidden="true"></i>
+            </div>
+            <div class="volume-bar">
+                <i id="player-buttons" class="fa fa-volume-up" aria-hidden="true" style="font-size:25px"></i>
+                <div class="volume-control">
+                    <div class="volume-background"></div>
+                    <div class="volume-control-button"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
     
 
 
     <script src="script/main.js"></script>
+    <script src="script/sizes.js"></script>
+    <script src="script/musAnim.js"></script>
 </body>
 </html>
