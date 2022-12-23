@@ -10,9 +10,9 @@ let songsPage = document.querySelector('.songs-content');
 let playingNow;
 
 let allTracks = [
-    ['1', 'Morgenshtern', 'Cadillac','url(\'./img/morgenshtern-cadillac.jpeg\')', '../tracks/morgenshtern-cadillac.mp3'],
-    ['2','Oxxxymiron', 'Bassline Business', 'url(\'./img/oxxxymiron-bassline-business.jpeg\')', '../tracks/oxxxymiron-bassline-business.mp3'],
-    ['3', 'Хаски', 'Track 03','url(\'./img/haski-track03.jpg\')', '../tracks/haski-track03.mp3']
+    ['1', 'Morgenshtern', 'Cadillac','url(\'./img/morgenshtern-cadillac.jpeg\')', './tracks/morgenshtern-cadillac.mp3'],
+    ['2','Oxxxymiron', 'Bassline Business', 'url(\'./img/oxxxymiron-bassline-business.jpeg\')', './tracks/oxxxymiron-bassline-business.mp3'],
+    ['3', 'Хаски', 'Track 03','url(\'./img/haski-track03.jpg\')', './tracks/haski-track03.mp3']
 ]
 
 class TrackList {
