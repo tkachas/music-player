@@ -97,19 +97,35 @@ function playSong() {
     for (let i = 0; i < playButton.length; i++) {
         playButton[i].onclick = () => {
             if (~Array.from(playButton[i].classList).indexOf(String(i+1))) {
-                for (let track = 0; track < allTracks.length; track++) {
-                    if (allTracks[track][0] == String(i+1)) {
-                        if (playingNow !== allTracks[track]) {
-                            playSong.pause();
-                            playSong.currentTime = 0;
-                            console.log(allTracks[track]);
-                            setTimeout(()=>{
-                                playSong.src = allTracks[track][4];
-                                playSong.play();
-                                playingNow = allTracks[track];
-                            },200);
+                if (~Array.from(playButton[i].classList).indexOf('fa-play')) {
+                    for (let j = 0; j < playButton.length; j++) {
+                        if (j !== i) {
+                            playButton[j].classList.add('fa-play');
+                            playButton[j].classList.remove('fa-pause');
                         }
                     }
+                    playButton[i].classList.remove('fa-play');
+                    playButton[i].classList.add('fa-pause');
+                    for (let track = 0; track < allTracks.length; track++) {
+                        if (allTracks[track][0] == String(i+1)) {
+                            if (playingNow !== allTracks[track]) {
+                                playSong.pause();
+                                playSong.currentTime = 0;
+                                setTimeout(()=>{
+                                    playSong.src = allTracks[track][4];
+                                    playSong.play();
+                                    playingNow = allTracks[track];
+                                },200);
+                                console.log('haha');
+                            } else {
+                                playSong.play();
+                            }
+                        }
+                    }
+                } else {
+                    playButton[i].classList.add('fa-play');
+                    playButton[i].classList.remove('fa-pause');
+                    playSong.pause();
                 }
             }
         }
