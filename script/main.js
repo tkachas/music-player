@@ -8,9 +8,9 @@ let songsPage = document.querySelector('.songs-content');
 
 
 let allTracks = [
-    ['1', 'Morgenshtern', 'Cadillac','url(\'./../img/morgenshtern-cadillac.jpeg\')'],
-    ['2','Oxxxymiron', 'Bassline Business', 'url(\'./../img/oxxxymiron-bassline-business.jpeg\')'],
-    ['3', 'Хаски', 'Track 03','url(\'./../img/haski-track03.jpg\')']
+    ['1', 'Morgenshtern', 'Cadillac','url(\'./img/morgenshtern-cadillac.jpeg\')'],
+    ['2','Oxxxymiron', 'Bassline Business', 'url(\'./img/oxxxymiron-bassline-business.jpeg\')'],
+    ['3', 'Хаски', 'Track 03','url(\'./img/haski-track03.jpg\')']
 ]
 
 class TrackList {
