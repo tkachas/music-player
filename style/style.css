@@ -162,7 +162,6 @@ a {
     .song-img {
         width: 40px;
         height: 40px;
-        background-image: url('../img/morgenshtern-cadillac.jpeg');
         background-size: cover; 
     }
     .song-name {
