@@ -8,9 +8,9 @@ let songsPage = document.querySelector('.songs-content');
 
 
 let allTracks = [
-    ['1', 'Morgenshtern', 'Cadillac','morgenshtern-cadillac.jpeg'],
-    ['2','Oxxxymiron', 'Bassline Business', 'oxxxymiron-bassline-business.jpeg'],
-    ['3', 'Хаски', 'Track 03','haski-track03.jpg']
+    ['1', 'Morgenshtern', 'Cadillac','url(\'../img/morgenshtern-cadillac.jpeg\')'],
+    ['2','Oxxxymiron', 'Bassline Business', 'url(\'../img/oxxxymiron-bassline-business.jpeg\')'],
+    ['3', 'Хаски', 'Track 03','url(\'../img/haski-track03.jpg\')']
 ]
 
 class TrackList {
@@ -53,7 +53,7 @@ function initSongs() {
         let newSongImg = document.createElement('div');
         newSongImg.className = 'song-img';
         newSongImg.classList.add(allTracks[track][0]);
-        newSongImg.style.backgroundImage = `url('../img/${allTracks[track][3]}')`;
+        newSongImg.style.backgroundImage = allTracks[track][3];
 
         let newSongInfo = document.createElement('div');
         newSongInfo.className = 'song-info';
