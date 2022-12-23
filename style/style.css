@@ -152,6 +152,9 @@ a {
         margin-left: 20px;
         margin-right: 20px;
     }
+    .play-song {
+        font-size: 25px;
+    }
     .song-info {
         display: flex;
         flex-direction: column;

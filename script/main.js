@@ -1,16 +1,18 @@
 'use strict';
+
+
 let sections = document.querySelectorAll('.section');
 
 let main = document.querySelector('.main-page-content');
 let playlists = document.querySelector('.playlists-content');
 let songsPage = document.querySelector('.songs-content');
 
-
+let playingNow;
 
 let allTracks = [
-    ['1', 'Morgenshtern', 'Cadillac','url(\'./img/morgenshtern-cadillac.jpeg\')'],
-    ['2','Oxxxymiron', 'Bassline Business', 'url(\'./img/oxxxymiron-bassline-business.jpeg\')'],
-    ['3', 'Хаски', 'Track 03','url(\'./img/haski-track03.jpg\')']
+    ['1', 'Morgenshtern', 'Cadillac','url(\'./img/morgenshtern-cadillac.jpeg\')', '../tracks/morgenshtern-cadillac.mp3'],
+    ['2','Oxxxymiron', 'Bassline Business', 'url(\'./img/oxxxymiron-bassline-business.jpeg\')', '../tracks/oxxxymiron-bassline-business.mp3'],
+    ['3', 'Хаски', 'Track 03','url(\'./img/haski-track03.jpg\')', '../tracks/haski-track03.mp3']
 ]
 
 class TrackList {
@@ -32,7 +34,10 @@ for (let i = 0; i < sections.length; i++) {
         contentRender(sections[i]);
     });
 }
+
+
 initSongs();
+playSong();
 
 function initSongs() {
     for (let track = 0; track < allTracks.length; track++) {
@@ -47,7 +52,8 @@ function initSongs() {
         let newSongPlayButton = document.createElement('i');
         newSongPlayButton.className = 'fa';
         newSongPlayButton.classList.add('fa-play');
-        newSongPlayButton.classList.add('play-current');
+        newSongPlayButton.classList.add('play-song');
+        newSongPlayButton.classList.add(allTracks[track][0]);
         newSongPlayButton.id = 'song-buttons';
 
         let newSongImg = document.createElement('div');
@@ -82,6 +88,31 @@ function initSongs() {
         main.appendChild(newSong);
 
 
+    }
+}
+
+function playSong() {
+    let playButton = document.querySelectorAll('.play-song');
+    let playSong = new Audio();
+    for (let i = 0; i < playButton.length; i++) {
+        playButton[i].onclick = () => {
+            if (~Array.from(playButton[i].classList).indexOf(String(i+1))) {
+                for (let track = 0; track < allTracks.length; track++) {
+                    if (allTracks[track][0] == String(i+1)) {
+                        if (playingNow !== allTracks[track]) {
+                            playSong.pause();
+                            playSong.currentTime = 0;
+                            console.log(allTracks[track]);
+                            setTimeout(()=>{
+                                playSong.src = allTracks[track][4];
+                                playSong.play();
+                                playingNow = allTracks[track];
+                            },200);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
