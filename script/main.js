@@ -100,7 +100,10 @@ function initSongs() {
         setDuration.src = allTracks[track][4];
         
         setDuration.addEventListener("canplaythrough", event => {
-            newSongDuration.innerText = String(Math.floor(setDuration.duration / 60))+ ':' + String(Math.floor(setDuration.duration % 60));
+            let minutes = Math.floor(setDuration.duration / 60);
+            let seconds = Math.floor(setDuration.duration % 60);
+            let secondsWithLeadingZero = seconds < 10 ? '0' + seconds : seconds;
+            newSongDuration.innerText = minutes + ':' + secondsWithLeadingZero;
         });
         newSongDuration.innerText = String(setDuration.duration);
 
