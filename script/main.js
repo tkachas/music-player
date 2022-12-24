@@ -21,6 +21,11 @@ let progressBarPointer = document.querySelector('.progress-bar-pointer');
 let startSong = new Audio();
 let playingNow;
 
+let volumeBar = document.querySelector('.volume-control');
+let volumeFiller = document.querySelector('.volume-filler');
+startSong.volume = parseInt(getComputedStyle(volumeFiller).width) / parseInt(getComputedStyle(volumeBar).width);
+
+
 let allTracks = [
     ['1', 'Morgenshtern', 'Cadillac','url(\'./img/morgenshtern-cadillac.jpeg\')', './tracks/morgenshtern-cadillac.mp3'],
     ['2','Oxxxymiron', 'Bassline Business', 'url(\'./img/oxxxymiron-bassline-business.jpeg\')', './tracks/oxxxymiron-bassline-business.mp3'],
@@ -51,6 +56,7 @@ setInterval(progressBarPointerMovement(), 200);
 initSongs();
 playSong();
 startSong.addEventListener('timeupdate', progressBar);
+volumeBar.addEventListener('click', volumeControl);
 
 
 function initSongs() {
@@ -171,7 +177,6 @@ function playPauseCurrent() {
         playCurrentButton.classList.add('fa-play');
         startSong.pause();
     }
-    console.log('asd');
 
 }
 
@@ -186,7 +191,6 @@ function setProgressTime(e) {
     const progressDivWidth = this.clientWidth;
     const clickX = e.pageX - parseInt(getComputedStyle(playingNowWin).left);
     const duration = startSong.duration;
-    console.log(clickX);
 
     startSong.currentTime = (clickX / progressDivWidth) * duration;
 }
@@ -204,8 +208,13 @@ function progressBarPointerMovement() {
     });
 }
 
+
+function volumeControl(e) {
+    volumeFiller.style.width = e.offsetX + 'px';
+    startSong.volume = parseInt(getComputedStyle(volumeFiller).width) / parseInt(getComputedStyle(volumeBar).width);
+}
+
 function setCurrentSong(songArr) {
-    console.log(songArr);
     playingNowArtist.innerText = songArr[1];
     playingNowName.innerText = songArr[2];
     playingNowImg.style.backgroundImage = songArr[3];

@@ -237,18 +237,22 @@ a {
     }
     .volume-control {
         width: 150px;
-        height: 0;
+        height: 5px;
         border-radius: 3px;
-        border: 2px solid #b0afad;
+        /* border: 2px solid #b0afad; */
+        background: #b0afad;
         display: flex;
         align-items: center;
-    }
-    .volume-control-button {
-        background-color: #b0afad;
-        border-radius: 50%;
-        width: 10px;
-        height: 10px;
+        transition: 0.2s;
         cursor: pointer;
+    }
+    .volume-control:hover {
+        height: 10px;
+    }
+    .volume-filler {
+        background-color: #f2cb2f;
+        height: 100%;
+        width: 90%;
     }
     .progress-bar {
         position: absolute;
@@ -266,7 +270,6 @@ a {
     .progress-bar-filler {
         position: absolute;
         height: 100%;
-        width: 100px;
         background-color: #f2cb2f;
         transition: 0.3s ease;
     }
