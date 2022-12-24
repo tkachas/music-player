@@ -12,6 +12,8 @@ let playingNowImg = document.querySelector('.current-song-img');
 let playingNowArtist = document.querySelector('#current-song-artist');
 let playingNowName = document.querySelector('#current-song-name');
 let playCurrentButton = document.querySelector('.play-current');
+let playNext = document.querySelector('.play-next');
+let playPrev = document.querySelector('.play-previous');
 
 
 let progressBarDiv = document.querySelector('.progress-bar');
@@ -28,19 +30,11 @@ startSong.volume = parseInt(getComputedStyle(volumeFiller).width) / parseInt(get
 
 let allTracks = [
     ['1', 'Morgenshtern', 'Cadillac','url(\'./img/morgenshtern-cadillac.jpeg\')', './tracks/morgenshtern-cadillac.mp3'],
-    ['2','Oxxxymiron', 'Bassline Business', 'url(\'./img/oxxxymiron-bassline-business.jpeg\')', './tracks/oxxxymiron-bassline-business.mp3'],
-    ['3', 'Хаски', 'Track 03','url(\'./img/haski-track03.jpg\')', './tracks/haski-track03.mp3']
+    ['2', 'Billie Eilish', 'you should see me in the crown', 'url(\'./img/billie-crown.jpeg\')','./tracks/Billie-Eilish-you_should_see_me_in_a_crown.mp3'],
+    ['3','Oxxxymiron', 'Bassline Business', 'url(\'./img/oxxxymiron-bassline-business.jpeg\')', './tracks/oxxxymiron-bassline-business.mp3'],
+    ['4', 'Хаски', 'Track 03','url(\'./img/haski-track03.jpg\')', './tracks/haski-track03.mp3']
+    
 ]
-
-class TrackList {
-    constructor(id,name,artist,duration, isInUserSongs) {
-        this.id = id;
-        this.name = name;
-        this.artist = artist;
-        this.duration = duration;
-        this.isInUserSongs = isInUserSongs;
-    }
-}
 
 for (let i = 0; i < sections.length; i++) {
     sections[i].addEventListener('click', ()=>{
@@ -57,6 +51,9 @@ initSongs();
 playSong();
 startSong.addEventListener('timeupdate', progressBar);
 volumeBar.addEventListener('click', volumeControl);
+playNext.addEventListener('click', nextPrev);
+playPrev.addEventListener('click', nextPrev);
+
 
 
 function initSongs() {
@@ -190,6 +187,30 @@ function playPauseCurrent() {
         startSong.pause();
     }
 
+}
+function nextPrev() {
+    let playButton = document.querySelectorAll('.play-song');
+    if (this.classList.contains('play-next') && parseInt(playingNow[0])+1 <= allTracks.length) {
+       startSong.pause();
+       startSong.src = allTracks[playingNow[0]][4];
+       playButton[parseInt(playingNow[0]) - 1].classList.remove('fa-pause');
+       playButton[parseInt(playingNow[0]) - 1].classList.add('fa-play');
+       playingNow = allTracks[playingNow[0]];
+       startSong.play();
+       playButton[parseInt(playingNow[0]) - 1].classList.remove('fa-play');
+       playButton[parseInt(playingNow[0]) - 1].classList.add('fa-pause');
+    }
+    else if (this.classList.contains('play-previous') && parseInt(playingNow[0])-2 >= 0) {
+        startSong.pause();
+        startSong.src = allTracks[parseInt(playingNow[0])-2][4];
+        playButton[parseInt(playingNow[0]) - 1].classList.remove('fa-pause');
+        playButton[parseInt(playingNow[0]) - 1].classList.add('fa-play');
+        playingNow = allTracks[parseInt(playingNow[0])-2];
+        startSong.play();
+        playButton[parseInt(playingNow[0]) - 1].classList.remove('fa-play');
+        playButton[parseInt(playingNow[0]) - 1].classList.add('fa-pause');
+
+    }
 }
 
 
