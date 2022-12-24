@@ -1,10 +1,10 @@
 'use strict'
-let content = document.querySelector('.content');
-let head = document.querySelector('.head');
-let musAnim = document.querySelector('.mus-anim');
-let nowPlaying = document.querySelector('.playing-now');
 
 if (window.outerWidth >= 1200) {
+    let content = document.querySelector('.content');
+    let head = document.querySelector('.head');
+    let musAnim = document.querySelector('.mus-anim');
+    let nowPlaying = document.querySelector('.playing-now');
     content.style.minHeight = (parseInt(window.innerHeight) - (parseInt(getComputedStyle(content).top) + parseInt(getComputedStyle(head).height)) - 2) +'px';
 
 
