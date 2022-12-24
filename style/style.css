@@ -54,6 +54,9 @@ a {
         font-size: 1.8rem;
         height: 100%;
     }
+    .mobile {
+        display: none;
+    }
     #name {
         justify-content: start;
         padding-left: 100px;
@@ -84,6 +87,11 @@ a {
         top: 5px;
         box-shadow: 0px 0.3px 5px rgb(187, 186, 186);
         transition: 0.2s ease;
+    }
+    .main-page-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     @media screen and (max-width: 1350px) {
         .head {
@@ -157,6 +165,8 @@ a {
         margin-bottom: 8px;
         display: flex;
         align-items: center;
+        box-sizing: border-box;
+        border: 3px solid white;
     }
     .song:hover {
         border: 3px solid #f5da59;
@@ -284,6 +294,7 @@ a {
         background-color: #f2cb2f;
         height: 100%;
         width: 10%;
+        border-radius: inherit;
     }
     @media screen and (min-width: 1700px) {
         .song-info {
@@ -385,7 +396,215 @@ a {
 }
 
 @media screen and (max-width: 1199px) {
-    body * {
+    .desktop {
         display: none;
+    }
+    .head {
+        width: 100%;
+        /* background-color: #fff; */
+        height: 50px;
+        position: absolute;
+        bottom:10px;
+        display: flex;
+        justify-content: space-around;
+        /* box-shadow: 0px 0.3px 5px rgb(187, 186, 186); */
+        align-items: center;
+        transition: 0.2s ease;
+    }
+    #name {
+        display: none;
+    }
+    .section {
+        height: 100%;
+        width: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        box-sizing: border-box;
+        border-radius: 10px;
+        box-shadow: 0px 0.3px 5px rgb(187, 186, 186);
+        background-color: #fff;
+    }
+    #main-page, #playlists, #songs{
+
+        font-size: 1.1rem;
+        color:rgb(71, 70, 70);
+    }
+    .content {
+        width: 80%;
+        min-height: 50%;
+        max-height: 70%;
+        background-color: #fff;
+        position: absolute;
+        top: 8%;
+        box-shadow: 0px 0.3px 5px rgb(187, 186, 186);
+        transition: 0.2s ease;
+        border-radius: 10px;
+        overflow-y: auto;
+    }
+    .main-page-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .mus-anim {
+       display: none;
+    }
+    .song {
+        width: 99%;
+        height: 50px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        border-radius: 10px;
+        box-shadow: 0px 0.3px 5px rgb(187, 186, 186);
+    }
+    .song-buttons-div {
+        display: flex;
+    }
+    #song-buttons {
+        color: #b0afad;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .play-song {
+        font-size: 25px;
+    }
+    .song-info {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.7em;
+        min-width: 70px;
+        padding-left: 5px;
+    }
+    .song-artist {
+        font-family: sans-serif;
+        font-weight: 800;
+    }
+    .song-img {
+        width: 30px;
+        height: 30px;
+        background-size: cover;
+        border-radius: 5px;
+    }
+    .song-duration {
+        width: 10px;
+        height: 5px;
+        position: absolute;
+        right: 10px;
+        color:rgb(78, 77, 77);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.6em;
+    }
+    .playing-now {
+        height: 50px;
+        width: 80%;
+        position: fixed;
+        bottom: 70px;
+        background-color: rgb(255, 253, 253);
+        box-shadow: 0px 0.3px 5px rgb(187, 186, 186);
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        box-sizing: border-box;
+        overflow-y: hidden;
+    }
+    .player-buttons-div {
+        text-align: center;
+        width: 25px;
+        position: absolute;
+    }
+    #player-buttons {
+        /* color: #dad8d6; */
+        color: #b0afad;
+        cursor: pointer;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .play-current {
+        font-size: 25px;
+        opacity: 0.8;
+    }
+    .play-previous {
+        font-size: 8px;
+        display: none;
+    }
+    .play-next {
+        font-size: 8px;
+        display: none;
+        /* text-shadow: 0px 0px 2px rgb(67, 67, 67); */
+    }
+    .current-song {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.6em;
+        min-width: 80px;
+        max-width: 100px;
+        overflow: hidden;
+        padding-left: 5px;
+    }
+    .current-song-artist {
+        font-family: sans-serif;
+        font-weight: 800;
+    }
+    .current-song-img {
+        margin-left: 6px;
+        width: 30px;
+        height: 30px;
+        background-image: url('../img/morgenshtern-cadillac.jpeg');
+        background-size: cover; 
+        border-radius: 5px; 
+    }
+    .actions-with-current-song {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        color: #b0afad;
+    }
+    .volume-bar {
+        right: 10px;
+        position: absolute;
+        display: flex;
+        align-items: center;
+    }
+    .volume-control {
+        width: 70px;
+        height: 10px;
+        border-radius: 3px;
+        /* border: 2px solid #b0afad; */
+        background: #b0afad;
+        display: flex;
+        align-items: center;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+    .volume-filler {
+        background-color: #f2cb2f;
+        height: 100%;
+        width: 10%;
+        border-radius: inherit;
+    }
+    .progress-bar {
+        position: absolute;
+        bottom:-2px;
+        width: 100%;
+        height: 10px;
+        background: #bfbfbf;
+        cursor: pointer;
+        transition: 0.2s ease;
+        border-radius: 10px;
+        box-shadow: 0px 0.3px 5px rgb(187, 186, 186);
+    }
+    .progress-bar-filler {
+        position: absolute;
+        height: 100%;
+        background-color: #f2cb2f;
+        transition: 0.3s ease;
+        border-radius: 10px;
     }
 }

@@ -39,7 +39,7 @@ let allTracks = [
 for (let i = 0; i < sections.length; i++) {
     sections[i].addEventListener('click', ()=>{
         for (let j = 0; j < sections.length; j++) {
-            sections[j].style.borderBottom = 'none';
+            sections[j].style.border = 'none';
         }
         sections[i].style.borderBottom = '2px solid red';
         contentRender(sections[i]);
