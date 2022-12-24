@@ -202,6 +202,7 @@ function nextPrev() {
        startSong.play();
        playButton[parseInt(playingNow[0]) - 1].classList.remove('fa-play');
        playButton[parseInt(playingNow[0]) - 1].classList.add('fa-pause');
+       setCurrentSong(playingNow);
     }
     else if (this.classList.contains('play-previous') && parseInt(playingNow[0])-2 >= 0) {
         startSong.pause();
@@ -212,7 +213,7 @@ function nextPrev() {
         startSong.play();
         playButton[parseInt(playingNow[0]) - 1].classList.remove('fa-play');
         playButton[parseInt(playingNow[0]) - 1].classList.add('fa-pause');
-
+        setCurrentSong(playingNow);
     }
 }
 
