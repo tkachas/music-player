@@ -250,5 +250,34 @@ a {
         height: 10px;
         cursor: pointer;
     }
+    .progress-bar {
+        position: absolute;
+        top:-10px;
+        width: 100%;
+        height: 10px;
+        background: #bfbfbf;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+    .progress-bar:hover {
+        height: 15px;
+        top: -15px;
+    }
+    .progress-bar-filler {
+        position: absolute;
+        height: 100%;
+        width: 100px;
+        background-color: #f2cb2f;
+        transition: 0.3s ease;
+    }
+    .progress-bar-pointer {
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background: #000;
+        /* background-color: #f2cb2f47; */
+        display: none;
+        border-radius: 2px;
+    }
 
 }

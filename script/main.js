@@ -7,6 +7,18 @@ let main = document.querySelector('.main-page-content');
 let playlists = document.querySelector('.playlists-content');
 let songsPage = document.querySelector('.songs-content');
 
+let playingNowWin = document.querySelector('.playing-now');
+let playingNowImg = document.querySelector('.current-song-img');
+let playingNowArtist = document.querySelector('#current-song-artist');
+let playingNowName = document.querySelector('#current-song-name');
+let playCurrentButton = document.querySelector('.play-current');
+
+
+let progressBarDiv = document.querySelector('.progress-bar');
+let progressBarFiller = document.querySelector('.progress-bar-filler');
+let progressBarPointer = document.querySelector('.progress-bar-pointer');
+
+let startSong = new Audio();
 let playingNow;
 
 let allTracks = [
@@ -35,9 +47,11 @@ for (let i = 0; i < sections.length; i++) {
     });
 }
 
-
+setInterval(progressBarPointerMovement(), 200);
 initSongs();
 playSong();
+startSong.addEventListener('timeupdate', progressBar);
+
 
 function initSongs() {
     for (let track = 0; track < allTracks.length; track++) {
@@ -93,7 +107,7 @@ function initSongs() {
 
 function playSong() {
     let playButton = document.querySelectorAll('.play-song');
-    let playSong = new Audio();
+    playCurrentButton.addEventListener('click', playPauseCurrent);
     for (let i = 0; i < playButton.length; i++) {
         playButton[i].onclick = () => {
             if (~Array.from(playButton[i].classList).indexOf(String(i+1))) {
@@ -105,33 +119,97 @@ function playSong() {
                         }
                     }
                     playButton[i].classList.remove('fa-play');
+                    playCurrentButton.classList.remove('fa-play');
                     playButton[i].classList.add('fa-pause');
+                    playCurrentButton.classList.add('fa-pause');
                     for (let track = 0; track < allTracks.length; track++) {
                         if (allTracks[track][0] == String(i+1)) {
                             if (playingNow !== allTracks[track]) {
-                                playSong.pause();
-                                playSong.currentTime = 0;
+                                startSong.pause();
+                                startSong.currentTime = 0;
                                 setTimeout(()=>{
-                                    playSong.src = allTracks[track][4];
-                                    playSong.play();
+                                    startSong.src = allTracks[track][4];
+                                    startSong.play();
+                                    setCurrentSong(allTracks[track]);
                                     playingNow = allTracks[track];
                                 },200);
-                                console.log('haha');
                             } else {
-                                playSong.play();
+                                startSong.play();
                             }
                         }
                     }
                 } else {
                     playButton[i].classList.add('fa-play');
+                    playCurrentButton.classList.add('fa-play');
                     playButton[i].classList.remove('fa-pause');
-                    playSong.pause();
+                    playCurrentButton.classList.remove('fa-pause');
+                    startSong.pause();
                 }
             }
         }
     }
 }
 
+function playPauseCurrent() {
+    let playButton = document.querySelectorAll('.play-song');
+    if (playCurrentButton.classList.contains('fa-play')) {
+        playCurrentButton.classList.remove('fa-play');
+        playCurrentButton.classList.add('fa-pause');
+        if (playingNow != undefined) {
+            startSong.play();
+        } else {
+            playingNow = allTracks[0];
+            startSong.src = playingNow[4];
+            startSong.play();
+        }
+        playButton[parseInt(playingNow[0]) - 1].classList.remove('fa-play');
+        playButton[parseInt(playingNow[0]) - 1].classList.add('fa-pause');
+    } else {
+        playButton[parseInt(playingNow[0]) - 1].classList.remove('fa-pause');
+        playButton[parseInt(playingNow[0]) - 1].classList.add('fa-play');
+        playCurrentButton.classList.remove('fa-pause');
+        playCurrentButton.classList.add('fa-play');
+        startSong.pause();
+    }
+    console.log('asd');
+
+}
+
+
+function progressBar(e) {
+    const {duration, currentTime} = e.srcElement;
+    let progressPersent = currentTime / duration * 100;
+    progressBarFiller.style.width = `${progressPersent}%`;
+}
+
+function setProgressTime(e) {
+    const progressDivWidth = this.clientWidth;
+    const clickX = e.pageX - parseInt(getComputedStyle(playingNowWin).left);
+    const duration = startSong.duration;
+    console.log(clickX);
+
+    startSong.currentTime = (clickX / progressDivWidth) * duration;
+}
+
+function progressBarPointerMovement() {
+    let ultimateLeft = parseInt(getComputedStyle(playingNowWin).left);
+    progressBarDiv.addEventListener('mousemove', (e)=>{
+            progressBarPointer.style.display = 'block';
+            // progressBarPointer.style.width = (e.pageX - ultimateLeft) + 'px';
+            progressBarPointer.style.left = (e.pageX - ultimateLeft) + 'px';
+            progressBarDiv.addEventListener('click', setProgressTime);
+    });
+    progressBarDiv.addEventListener('mouseleave', ()=>{
+        progressBarPointer.style.display = 'none';
+    });
+}
+
+function setCurrentSong(songArr) {
+    console.log(songArr);
+    playingNowArtist.innerText = songArr[1];
+    playingNowName.innerText = songArr[2];
+    playingNowImg.style.backgroundImage = songArr[3];
+}
 
 function contentRender(pageName) {
     if (pageName.id == 'main-page') {
