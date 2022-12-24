@@ -96,6 +96,17 @@ function initSongs() {
         newSongName.classList.add(allTracks[track][0]);
         newSongName.innerText = allTracks[track][2];
 
+        let newSongDuration = document.createElement('div');
+        newSongDuration.className = 'song-duration';
+        newSongDuration.classList.add(allTracks[track][0]);
+        let setDuration = new Audio();
+        setDuration.src = allTracks[track][4];
+        
+        setDuration.addEventListener("canplaythrough", event => {
+            newSongDuration.innerText = String(Math.floor(setDuration.duration / 60))+ ':' + String(Math.floor(setDuration.duration % 60));
+        });
+        newSongDuration.innerText = String(setDuration.duration);
+
         newSongButtonsDiv.appendChild(newSongPlayButton);
 
         newSongInfo.appendChild(newSongArtist);
@@ -104,6 +115,7 @@ function initSongs() {
         newSong.appendChild(newSongButtonsDiv);
         newSong.appendChild(newSongImg);
         newSong.appendChild(newSongInfo);
+        newSong.appendChild(newSongDuration);
 
         main.appendChild(newSong);
 
@@ -185,6 +197,24 @@ function progressBar(e) {
     const {duration, currentTime} = e.srcElement;
     let progressPersent = currentTime / duration * 100;
     progressBarFiller.style.width = `${progressPersent}%`;
+
+    let songDurationBar = document.querySelectorAll('.song-duration');
+    songDurDown();
+    function songDurDown() {
+        setInterval(function() {
+          let timeRemaining = startSong.duration - startSong.currentTime;
+          let minutes = Math.floor(timeRemaining / 60);
+          let seconds = Math.floor(timeRemaining % 60);
+      
+          let secondsWithLeadingZero = seconds < 10 ? '0' + seconds : seconds;
+          
+          for (let i = 0; i < songDurationBar.length; i++) {
+            if (songDurationBar[i].classList.contains(playingNow[0])) {
+                songDurationBar[i].innerText = minutes + ':' + secondsWithLeadingZero;
+            }
+          }
+        }, 500);
+      }
 }
 
 function setProgressTime(e) {

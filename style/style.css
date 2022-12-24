@@ -170,6 +170,16 @@ a {
     .song-name {
         font-weight: 300;
     }
+    .song-duration {
+        width: 50px;
+        height: 20px;
+        position: absolute;
+        right: 30px;
+        color:rgb(78, 77, 77);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     .playing-now {
         height: 50px;
